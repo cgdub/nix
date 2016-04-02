@@ -17,7 +17,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "nixos"; # Define your hostname.
-  networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Select internationalisation properties.
   i18n = {
@@ -32,8 +32,11 @@
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
+    chromium
+    emacs
     firefox
     git
+    steam
     vim
     wget
   ];
@@ -57,7 +60,7 @@
 
   # Enable the KDE Desktop Environment.
   # services.xserver.displayManager.kdm.enable = true;
-  services.xserver.desktopManager.kde4.enable = true;
+  services.xserver.desktopManager.gnome3.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.extraUsers.chris = {
