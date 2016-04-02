@@ -10,15 +10,14 @@
       ./hardware-configuration.nix
     ];
 
-  # Use the GRUB 2 boot loader.
-  boot.loader.grub.enable = true;
-  boot.loader.grub.version = 2;
-  # Define on which hard drive you want to install Grub.
-  boot.loader.grub.device = "/dev/sda";
+  nixpkgs.config.allowUnfree = true;
+
+  # Use the gummiboot efi boot loader.
+  boot.loader.gummiboot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "nixos"; # Define your hostname.
   networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  # networking.networkmanager.enable = true;
 
   # Select internationalisation properties.
   i18n = {
@@ -51,6 +50,10 @@
   services.xserver.enable = true;
   services.xserver.layout = "us";
   services.xserver.xkbOptions = "ctrl:nocaps";
+  services.xserver.videoDrivers = [ "nvidia" ];
+  services.xserver.autorun = true;
+
+  hardware.opengl.driSupport32Bit = true;
 
   # Enable the KDE Desktop Environment.
   # services.xserver.displayManager.kdm.enable = true;
@@ -66,5 +69,5 @@
 
   # The NixOS release to be compatible with for stateful data such as databases.
   system.stateVersion = "16.03";
-  system.autoUpgrade.enable = true;
+
 }
