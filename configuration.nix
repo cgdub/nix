@@ -55,8 +55,12 @@
   services.xserver.xkbOptions = "ctrl:nocaps";
   services.xserver.videoDrivers = [ "nvidia" ];
   services.xserver.autorun = true;
+  # services.xserver.exportConfiguration = true;
+  services.xserver.enableCtrlAltBackspace = true;
 
+  hardware.opengl.driSupport = true;
   hardware.opengl.driSupport32Bit = true;
+  hardware.opengl.s3tcSupport = true;
 
   # Enable the KDE Desktop Environment.
   # services.xserver.displayManager.kdm.enable = true;
