@@ -10,7 +10,15 @@
       ./hardware-configuration.nix
     ];
 
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+
+    chromium = {
+      enablePepperFlash = true;
+      gnomeSupport = true;
+      gnomeKeyringSupport = true;
+    };
+  };
 
   # Use the gummiboot efi boot loader.
   boot.loader.gummiboot.enable = true;
