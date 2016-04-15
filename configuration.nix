@@ -50,6 +50,7 @@
     haskellPackages.xmobar
     haskellPackages.xmonad
     iptables
+    leiningen
     manpages
     nix
     nmap
