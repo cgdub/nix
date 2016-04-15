@@ -41,11 +41,21 @@
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
+    binutils
     chromium
+    dmenu
     emacs
     firefox
-    git
+    gitAndTools.gitFull
+    haskellPackages.xmobar
+    haskellPackages.xmonad
+    iptables
+    manpages
+    nix
+    nmap
+    rxvt_unicode
     steam
+    tcpdump
     vim
     wget
   ];
@@ -58,6 +68,10 @@
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
+  hardware.opengl.driSupport = true;
+  hardware.opengl.driSupport32Bit = true;
+  hardware.opengl.s3tcSupport = true;
+
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   services.xserver.layout = "us";
@@ -67,13 +81,17 @@
   # services.xserver.exportConfiguration = true;
   services.xserver.enableCtrlAltBackspace = true;
 
-  hardware.opengl.driSupport = true;
-  hardware.opengl.driSupport32Bit = true;
-  hardware.opengl.s3tcSupport = true;
-
   # Enable the KDE Desktop Environment.
   # services.xserver.displayManager.kdm.enable = true;
   services.xserver.desktopManager.gnome3.enable = true;
+  services.xserver.desktopManager.default = "none";
+  services.xserver.desktopManager.xterm.enable = false;
+  services.xserver.windowManager.default = "xmonad";
+  services.xserver.windowManager.xmonad.enable = true;
+  services.xserver.windowManager.xmonad.enableContribAndExtras = true;
+  services.xserver.displayManager.slim.defaultUser = "chris";
+
+  services.nixosManual.showManual = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.extraUsers.chris = {
